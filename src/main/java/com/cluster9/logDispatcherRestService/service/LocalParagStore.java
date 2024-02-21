@@ -23,7 +23,7 @@ public class LocalParagStore {
         try {
             simpleLogs = (ArrayList<LogParagraph>) dispatchLogFilesContent.getLogParagraphs(paragsFolderPath);
         } catch (Exception e) {
-            System.out.println("probliem loading log files in localstore instance");
+            System.out.println("problem loading log files in localstore instance");
             throw new RuntimeException(e);
         }
         return convertToWebLogParags(simpleLogs);

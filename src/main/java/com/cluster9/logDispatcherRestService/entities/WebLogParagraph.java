@@ -86,11 +86,10 @@ public class WebLogParagraph implements Serializable {
 		else
 			this.fileName = p.getFileName();
 		// the Tag instance must exists here
-		if (tag != null) {
-			this.tag = tag;
+		if (p.getTag() == null | p.getTag().isEmpty()) {
+			this.tag = new Tag("notag");
 		} else {
 			this.tag = new Tag(p.getTag());
-			logger.debug("a temp Tag was created in WebParag constructor");
 		}
 
 		this.title = p.getTitle();
@@ -98,9 +97,7 @@ public class WebLogParagraph implements Serializable {
 		this.castLines(p);
 		
 		this.processCreatedDate(p);
-		
-		
-		//// créer le tag et ajouter le this, mais tester le tagSave et tagModify avant via le tag restcontroller, mais créer un tag avant
+
 	}
 
 	private void processCreatedDate(LogParagraph p) {
@@ -137,9 +134,12 @@ public class WebLogParagraph implements Serializable {
 		} else {
 			p.getLines().stream().forEachOrdered( line -> {
 				if (!(line.isEmpty())) {
-					this.lines = this.lines.concat(line);
+					this.lines = this.lines.concat(line).concat("\n");
 					// System.out.println("WebLogParagraph" + this.title + "line written " + this.getLines().length()	+ "  line:" + line.length());
+				} else {
+					this.lines = this.lines.concat("\n");
 				}
+
 			
 			});
 		}

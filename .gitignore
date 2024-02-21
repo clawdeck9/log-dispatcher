@@ -2,6 +2,8 @@ build/
 bin/
 gradle/
 
+generated-logs/
+
 .mvn/
 .project
 .settings/
